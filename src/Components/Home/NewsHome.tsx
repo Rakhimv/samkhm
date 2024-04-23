@@ -27,7 +27,7 @@ const NewsHome = () => {
 
 
     return (
-        <div className='w-full flex justify-center mt-[50px] mb-[100px] noxs1000:p-[20px]' data-aos="fade-up">
+        <div className='w-full flex justify-center mt-[50px] mb-[0px] noxs1000:p-[20px]' data-aos="fade-up">
             <div className='container max-w-[900px] '>
                 <div className={`py-[20px] flex justify-between noxs658:flex-col noxs1000:gap-[20px] items-center`}>
                     <p className="text-2xl font-bold">Последние новости</p>

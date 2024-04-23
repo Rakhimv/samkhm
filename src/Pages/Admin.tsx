@@ -1,4 +1,4 @@
-import { Button, Card, Chip, Image, Input, Modal, ModalContent, Tab, Tabs, Textarea } from "@nextui-org/react"
+import { Button, Card, Chip, Image, Input, Modal, ModalContent, Progress, Tab, Tabs, Textarea } from "@nextui-org/react"
 import { useForm } from "react-hook-form"
 import axios from "axios"
 import { useState } from "react";
@@ -12,6 +12,10 @@ import { burl } from "../Utils/Global";
 import { useNavigate } from "react-router";
 import GetNews from "../Components/Admin/GetNews";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import CollectionsIcon from '@mui/icons-material/Collections';
+import { enqueueSnackbar } from "notistack";
+import AdminGallery from "../Components/Admin/AdminGallery";
+
 
 const Admin = () => {
     const { register, handleSubmit } = useForm();
@@ -19,8 +23,14 @@ const Admin = () => {
     const [photoUrls, setPhotoUrls] = useState<string[]>([]);
     const [loadNews, setLoadNews] = useState<boolean>(false)
     const [alod, setAlod] = useState<boolean>(false)
+    const [Rel, setRel] = useState<any>(null)
     const navigate = useNavigate()
 
+
+
+
+    const [loading, setLoading] = useState<any>(null)
+    const [galleryUrl, setGalleryUrl] = useState<string[]>([]);
 
 
     const handleUpload = (urls: string[]) => {
@@ -31,31 +41,50 @@ const Admin = () => {
         setPhotoUrls(prevUrls => prevUrls.filter((_, i) => i !== index));
     };
 
-    async function postImgs() {
-        const promises: Promise<string>[] = [];
+    const handleUpload2 = (urls: string[]) => {
+        setGalleryUrl(prevUrls => [...prevUrls, ...urls]);
+    };
 
-        const blobPromises = photoUrls.map(async (url: string) => {
+    const handleDelete2 = (index: number) => {
+        setGalleryUrl(prevUrls => prevUrls.filter((_, i) => i !== index));
+    };
+
+    async function postImgs(arr: string[], dir: string) {
+        const promises: Promise<string>[] = [];
+        let totalBytes = 0;
+        let totalBytesTransferred = 0;
+    
+        const blobPromises = arr.map(async (url: string) => {
             const response = await fetch(url);
             const blob = await response.blob();
+            totalBytes += blob.size; // Увеличиваем общее количество байтов
             return blob;
         });
-
+    
         const blobs = await Promise.all(blobPromises);
-
+    
         for (let index = 0; index < blobs.length; index++) {
             const blob = blobs[index];
             const timestamp = Date.now();
             const fileName = `f${timestamp}.jpg`;
-            const storageRef = ref(storage, `files/${fileName}`);
+            const storageRef = ref(storage, `${dir}/${fileName}`);
             const uploadTask = uploadBytesResumable(storageRef, blob);
-
+    
+            let lastBytesTransferred = 0;
+    
             const promise = new Promise<string>((resolve, reject) => {
                 uploadTask.on(
                     "state_changed",
                     (snapshot) => {
-                        const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+                        // Обновляем общее количество байтов, переданных для всех изображений
+                        totalBytesTransferred -= lastBytesTransferred;
+                        totalBytesTransferred += snapshot.bytesTransferred;
+                        lastBytesTransferred = snapshot.bytesTransferred;
+    
+                        const progress = Math.round((totalBytesTransferred / totalBytes) * 100);
+                        setLoading(progress);
                         console.log(progress);
-
+    
                     },
                     reject,
                     async () => {
@@ -68,13 +97,14 @@ const Admin = () => {
                     }
                 );
             });
-
+    
             promises.push(promise);
             await promise;
         }
-
+    
         return Promise.all(promises);
     }
+    
 
 
 
@@ -106,7 +136,7 @@ const Admin = () => {
         setLoadNews(true)
 
 
-        postImgs()
+        postImgs(photoUrls, 'files')
             .then(async (downloadURLs) => {
                 try {
                     let imgs = []
@@ -128,22 +158,32 @@ const Admin = () => {
             });
         console.log(photoUrls);
 
-        try {
-            const req = await axios.post('https://pokiza.fun/api/khm/login.php', data)
-            if (req.data.success) {
-                setMessage(req.data.message)
-                localStorage.setItem('admin', 'true')
-                setTimeout(() => {
-                    window.location.reload()
-                }, 1000);
-            } else {
-                setMessage(req.data.message)
-            }
-        } catch {
-            console.log('Error');
 
-        }
     }
+
+
+    const submitGallery = async () => {
+        setLoadNews(true)
+        console.log('wdwd');
+
+
+        postImgs(galleryUrl, 'gallery')
+            .then(async (downloadURLs) => {
+                console.log(downloadURLs);
+                setLoadNews(false)
+                enqueueSnackbar('Картинки успешно загружены!', { variant: 'success' });
+                setGalleryUrl([])
+                setRel(Date.now())
+            })
+            .catch(error => {
+                console.log(error);
+                setLoadNews(false)
+                enqueueSnackbar('Ошибка при загрузке!', { variant: 'error' });
+            });
+
+
+    }
+
 
 
 
@@ -158,7 +198,7 @@ const Admin = () => {
                     <div className="flex w-max noxs658:w-full flex-col mt-[50px]">
 
                         <Tabs aria-label="Options" onSelectionChange={(key: React.Key) => {
-                            if(key == 'back') {
+                            if (key == 'back') {
                                 navigate('/')
                             }
                         }} defaultSelectedKey={'photos'} color="primary" variant="bordered">
@@ -172,11 +212,7 @@ const Admin = () => {
                             />
                             <Tab
                                 key="photos"
-                                title={
-                                    <div className="flex items-center space-x-2">
-                                        <AddIcon />
-                                        <span>Добавить</span>
-                                    </div>
+                                title={<AddIcon />
                                 }
                             >
                                 <Card className="py-[30px] px-[20px] w-[650px] noxs658:w-full flex flex-col gap-[20px]">
@@ -211,10 +247,7 @@ const Admin = () => {
                             <Tab
                                 key="music"
                                 title={
-                                    <div className="flex items-center space-x-2">
-                                        <EditIcon />
-                                        <span>Управление</span>
-                                    </div>
+                                    <EditIcon />
                                 }
                             >
 
@@ -222,7 +255,33 @@ const Admin = () => {
                                     <GetNews />
                                 </Card>
                             </Tab>
+                            <Tab
+                                key="gallery"
+                                title={<CollectionsIcon />}
+                            >
+                                <Card className="py-[30px] px-[20px] w-[650px] noxs658:w-full flex flex-col gap-[20px]">
+                                    <form className="flex flex-col gap-[20px]" >
 
+                                        <DropZone
+                                            handleDelete={handleDelete2}
+                                            handleUpload={handleUpload2}
+                                            photoUrls={galleryUrl}
+                                            setPhotoUrls={setGalleryUrl} />
+
+
+                                        <Button onClick={() => {
+                                            if (galleryUrl.length > 0) {
+                                                submitGallery()
+                                            }
+                                        }} fullWidth variant="shadow" color="primary">
+                                            Добавить
+                                        </Button>
+                                    </form>
+
+                                    <h1 className="text-[30px] mt-[20px] text-center">Галлерея</h1>
+                                    <AdminGallery rel={Rel} />
+                                </Card>
+                            </Tab>
                         </Tabs>
 
                     </div>
@@ -233,9 +292,31 @@ const Admin = () => {
 
 
                 <Modal backdrop={'blur'} hideCloseButton placement={"center"} isOpen={loadNews} onClose={() => { }}>
+
+
                     <ModalContent className="flex justify-center items-center bg-transparent shadow-none">
-                        <CircularProgress size={100} />
+
+                        {loading ?
+                            <Card className="p-[20px] min-w-[300px] ">
+                                <p className="text-center font-bold text-[20px]">{loading}%</p>
+                                <Progress
+                                    aria-label="Downloading..."
+                                    size="lg"
+                                    value={loading}
+                                    color="primary"
+                                    className="max-w-md"
+                                />
+                            </Card>
+
+                            :
+
+                            <CircularProgress size={100} />
+                        }
+
+
+
                     </ModalContent>
+
                 </Modal>
 
             </>

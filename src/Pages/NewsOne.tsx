@@ -42,7 +42,7 @@ function NewsOne() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const data = await GetNewsArray(10);
+                const data = await GetNewsArray(6);
                 setNewsArray(data);
             } catch (error) {
                 console.error('Error fetching news:', error);

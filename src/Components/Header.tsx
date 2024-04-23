@@ -4,7 +4,7 @@ import { phone } from "../Utils/Global";
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import MenuHD from "./Menu";
 import { useLocation } from "react-router";
-import {useMediaQuery } from "@mui/material";
+import { useMediaQuery } from "@mui/material";
 import { matches1000, matches1167 } from "../Utils/Sizes";
 import MenuIcon from '@mui/icons-material/Menu';
 import { useState } from "react";
@@ -66,9 +66,11 @@ const Header = () => {
 
                     {!is1167 &&
                         <>
-                            <Button size="lg" isIconOnly color="primary">
-                                <LocalPhoneIcon />
-                            </Button>
+                            <a href={`tel:${phone}`}>
+                                <Button size="lg" isIconOnly color="primary">
+                                    <LocalPhoneIcon />
+                                </Button>
+                            </a>
                             <Button size="lg" onClick={() => setSearchOpen(true)} isIconOnly>
                                 <SearchIcon />
                             </Button></>
