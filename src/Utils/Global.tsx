@@ -1,2 +1,2 @@
-export const phone = '+9966 221-78-79'
+export const phone = '+99662217879'
 export const burl = 'https://samkhm34-default-rtdb.asia-southeast1.firebasedatabase.app/'
