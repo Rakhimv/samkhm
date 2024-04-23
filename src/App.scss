@@ -130,6 +130,14 @@ header {
   .h12 {
     font-size: 25px;
   }
+
+  
+.bghome {
+  background-image: url('/public/homebg.png');
+  background-size: 200% 500px;
+  background-repeat: no-repeat;
+}
+
 }
 
 @media (max-width: 658px) {
@@ -141,5 +149,12 @@ header {
     font-size: 15px;
     padding-left: 30px;
     padding-right: 30px;
+  }
+
+  .bghome {
+    background-image: url('/public/homebg.png');
+    background-size: 250% 400px;
+    background-position: 40% 50%;
+    background-repeat: no-repeat;
   }
 }
