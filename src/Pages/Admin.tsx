@@ -18,6 +18,7 @@ const Admin = () => {
     const [message, setMessage] = useState<any>(null)
     const [photoUrls, setPhotoUrls] = useState<string[]>([]);
     const [loadNews, setLoadNews] = useState<boolean>(false)
+    const [alod, setAlod] = useState<boolean>(false)
     const navigate = useNavigate()
 
 
@@ -78,6 +79,7 @@ const Admin = () => {
 
 
     const submitAdm = async (data: any) => {
+        setAlod(true)
         setMessage('')
         try {
             console.log(data);
@@ -88,10 +90,13 @@ const Admin = () => {
                 setTimeout(() => {
                     window.location.reload()
                 }, 1000);
+                setAlod(false)
             } else {
+                setAlod(false)
                 setMessage(req.data.message)
             }
         } catch {
+            setAlod(false)
             console.log('Error');
 
         }
@@ -263,7 +268,7 @@ const Admin = () => {
                             {...register('password', { required: true })}
                         />
 
-                        <Button type="submit" fullWidth variant="shadow" color="primary">
+                        <Button type="submit" isLoading={alod} fullWidth variant="shadow" color="primary">
                             Вход
                         </Button>
                     </form>
