@@ -1,6 +1,7 @@
 import Accordions from "../Components/Accordions"
 import GalleryHome from "../Components/Home/GalleryHome"
 import NewsHome from "../Components/Home/NewsHome"
+import Rating from "../Components/RatingBox"
 
 const Home = () => {
     return (
@@ -25,7 +26,7 @@ const Home = () => {
                 <GalleryHome />
             </div>
 
-           
+
 
             <div className="w-full mb-[150px] mt-[50px] flex justify-center">
                 <div className='container max-w-[900px] flex flex-col gap-[20px] noxs658:p-[20px]'>
@@ -37,6 +38,10 @@ const Home = () => {
             </div>
 
 
+
+            <div>
+                <Rating />
+            </div>
 
 
         </div>

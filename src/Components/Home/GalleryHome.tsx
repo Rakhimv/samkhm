@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Button, Card, Divider, Skeleton } from '@nextui-org/react';
+import { Button, Divider } from '@nextui-org/react';
 import { Link } from 'react-router-dom';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import { useMediaQuery } from '@mui/material';
@@ -57,34 +57,12 @@ const GalleryHome = () => {
                 </div>
                 <Divider />
                 {load ?
-                    <div className='flex w-full mt-[20px] gap-[20px] noxs658:flex-wrap'>
-                        {Array.from({ length: 3 }).map((_, index) => (
-                            <>
-                                <Card key={index} className="w-full space-y-5 p-4" radius="lg">
-                                    <Skeleton className="rounded-lg">
-                                        <div className="h-[150px] rounded-lg bg-default-300"></div>
-                                    </Skeleton>
+                    <div className='gallery-grid mt-[20px]'>
+                        {Array.from({ length: 5 }).map((_, index) => (
+                            <div key={index} className='gallery-item rounded-[10px] overflow-hidden'>
 
+                            </div>
 
-                                    <div className="space-y-3">
-                                        <Skeleton className="w-4/5 rounded-lg">
-                                            <div className="h-3 w-4/5 rounded-lg bg-default-200"></div>
-                                        </Skeleton>
-                                        <Skeleton className="w-full rounded-lg">
-                                            <div className="h-3 w-full rounded-lg bg-default-200"></div>
-                                        </Skeleton>
-
-
-                                        <div className='pt-[10px]'>
-                                            <Skeleton className="w-4/5 rounded-lg">
-                                                <div className="h-3 w-4/5 rounded-lg bg-default-200"></div>
-                                            </Skeleton>
-                                        </div>
-                                    </div>
-
-
-                                </Card>
-                            </>
                         ))}
 
                     </div>
@@ -99,7 +77,7 @@ const GalleryHome = () => {
                                     <div className='gallery-item rounded-[10px] overflow-hidden'>
                                         <Zoom >
                                             <div
-                                                className='pb-[48%] noxs658:pb-[56%]'
+                                                className='pb-[58%]'
                                                 key={index}
                                                 role="img"
                                                 style={{

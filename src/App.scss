@@ -178,11 +178,11 @@ header {
 }
 
 .gallery-item {
-  background-color: #141f78;
+  background-color: #ffffff;
 
   &:nth-child(1) {
     height: 100%;
-    background-color: #141f78;
+    background-color: #ffffff;
     grid-area: 1/1/3/3
   }
 }
@@ -193,18 +193,17 @@ header {
   .gallery-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: 27vw;
+    grid-auto-rows: 100px;
     grid-gap: 10px;
     /* Пространство между элементами сетки */
   }
 
   .gallery-item {
-    background-color: #141f78;
+    background-color: #ffffff;
     overflow: hidden;
 
     &:nth-child(1) {
-      height: 100%;
-      background-color: #141f78;
+      background-color: #ffffff;
       grid-area: 1/1/3/-1
     }
 
