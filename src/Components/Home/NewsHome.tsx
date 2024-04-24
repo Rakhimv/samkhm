@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { GetNewsArray } from '../Admin/GetNewsArray';
-import { Button, Card, Chip, Divider, Image, Skeleton } from '@nextui-org/react';
+import { Button, Card, Chip, Divider, Skeleton } from '@nextui-org/react';
 import { Link } from 'react-router-dom';
 import { formatTimestamp } from '../../Utils/Utils';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
