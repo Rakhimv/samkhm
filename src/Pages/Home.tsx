@@ -1,4 +1,5 @@
 import Accordions from "../Components/Accordions"
+import GalleryHome from "../Components/Home/GalleryHome"
 import NewsHome from "../Components/Home/NewsHome"
 
 const Home = () => {
@@ -20,6 +21,10 @@ const Home = () => {
 
 
 
+            <div>
+                <GalleryHome />
+            </div>
+
            
 
             <div className="w-full mb-[150px] mt-[50px] flex justify-center">
@@ -31,13 +36,6 @@ const Home = () => {
                 </div>
             </div>
 
-
-
-            <div className="w-full flex justify-center xs658:mb-[100px]">
-                <div className="p-[0px] container max-w-[900px]">
-                    <iframe src="https://yandex.com/map-widget/v1/?um=constructor%3A8f221026734bbc0a1641eb622c49013311106ddc8e07823df5b53e031e5a5efc&amp;source=constructor" width="100%" height="500" ></iframe>
-                </div>
-            </div>
 
 
 

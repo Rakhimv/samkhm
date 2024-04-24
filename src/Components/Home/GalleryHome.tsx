@@ -1,45 +1,62 @@
 import { useEffect, useState } from 'react'
-import { GetNewsArray } from '../Admin/GetNewsArray';
 import { Button, Card, Chip, Divider, Image, Skeleton } from '@nextui-org/react';
 import { Link } from 'react-router-dom';
-import { formatTimestamp } from '../../Utils/Utils';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import { useMediaQuery } from '@mui/material';
 import { matches658 } from '../../Utils/Sizes';
+import { getDownloadURL, listAll, ref } from 'firebase/storage';
+import { storage } from '../../Api/firebase';
+import Zoom from 'react-medium-image-zoom'
+import 'react-medium-image-zoom/dist/styles.css'
 
-const NewsHome = () => {
-    const [newsArray, setNewsArray] = useState<any>(null);
+
+const GalleryHome = () => {
+    const [imgs, setImgs] = useState<any>([])
+    const [load, setLoad] = useState<boolean>(true)
+    const filesRef = ref(storage, '/gallery');
+
     const ismb = useMediaQuery(matches658)
 
+    async function getImgs() {
+        setLoad(true);
+        try {
+            const res = await listAll(filesRef);
+            const urls = await Promise.all(res.items.map(async (itemRef) => {
+                try {
+                    return await getDownloadURL(itemRef);
+                } catch (error) {
+                    console.error('Ошибка при получении URL файла:', error);
+                    return null;
+                }
+            }));
+
+            const lastFiveImgs = urls.slice(-5);
+            setImgs(lastFiveImgs.filter(url => url !== null));
+            setLoad(false);
+        } catch (error) {
+            setImgs([]);
+            setLoad(false);
+            console.error('Ошибка при получении списка файлов:', error);
+        }
+    }
+
+
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const data = await GetNewsArray(3);
-                setNewsArray(data);
-            } catch (error) {
-                console.error('Error fetching news:', error);
-            }
-        };
-
-        setTimeout(() => {
-            fetchData();
-        }, 2000);
-    }, []);
-
-
+        getImgs()
+    }, [])
 
     return (
         <div className='w-full flex justify-center py-[50px] pt-[20px] mt-[50px] mb-[0px] noxs1000:p-[20px]' data-aos="fade-up">
             <div className='container max-w-[900px] '>
                 <div className={`py-[20px] flex justify-between noxs658:flex-col noxs1000:gap-[20px] items-center`}>
-                    <p className="text-2xl font-bold">Последние новости</p>
+                    <p className="text-2xl font-bold">Фотогалерея</p>
 
                     {ismb && < Link to={'/news'}>
-                        <Button variant='light' color='primary' endContent={<NavigateNextIcon />}>Смотреть все</Button>
+                        <Button variant='light' color='primary' endContent={<NavigateNextIcon />}>Перейти</Button>
                     </Link>}
                 </div>
                 <Divider />
-                {!newsArray ?
+                {load ?
                     <div className='flex w-full mt-[20px] gap-[20px] noxs658:flex-wrap'>
                         {Array.from({ length: 3 }).map((_, index) => (
                             <>
@@ -74,52 +91,40 @@ const NewsHome = () => {
                     :
 
 
-                    newsArray.length > 0 ?
+                    imgs.length > 0 ?
                         <>
-                            <div className='flex w-full mt-[20px] gap-[10px] noxs658:flex-wrap'>
-                                {newsArray.map((news: any, index: any) =>
-                                    <Link key={index} to={'/news/' + news.key} className='flex w-full flex-col gap-[5px] p-[5px] rounded-md hover:text-primary cursor-pointer hover:opacity-75'>
+                            <div className='gallery-grid mt-[20px]'>
+                                {imgs.map((item: any, index: any) =>
 
-
-                                        <Card key={index} className="w-full noxs480:w-full space-y-5 p-4" radius="lg" data-aos="flip-up" data-aos-delay={index * 200}>
-                                            <div className="h-24 w-full rounded-lg bg-default-300"
-
+                                    <div className='gallery-item rounded-[10px] overflow-hidden'>
+                                        <Zoom >
+                                            <div
+                                            className='pb-[48%] noxs658:pb-[56%]'
+                                                key={index}
+                                                role="img"
                                                 style={{
-                                                    backgroundImage: `url(${news.media && news.media[0][0]
-                                                        ?
-                                                        news.media[0][0] :
-                                                        '/emp.png'
-                                                        })`,
+                                                    borderRadius: 10,
+                                                    backgroundColor: '#fff',
+                                                    backgroundImage: `url("${item}")`,
                                                     backgroundPosition: '50%',
                                                     backgroundRepeat: 'no-repeat',
                                                     backgroundSize: 'cover',
-                                                    height: '100px',
-                                                    paddingBottom: '56%',
+                                                    height: '100%',
                                                     width: '100%',
                                                 }}
-
-                                            ></div>
-
-
-                                            <div className="space-y-3">
-                                                <p className='maxp'>{news.title}</p>
-
-                                                <Chip className='mt-[10px]' variant='flat'>
-                                                    {formatTimestamp(news.ctime)}
-                                                </Chip>
-                                            </div>
+                                            />
+                                        </Zoom>
+                                    </div>
 
 
-                                        </Card>
-                                    </Link>
                                 )}
 
                             </div>
 
 
 
-                            {!ismb && < Link to={'/news'} className='flex justify-center mt-[30px]'>
-                                <Button variant='light' color='primary' endContent={<NavigateNextIcon />}>Смотреть все</Button>
+                            {!ismb && < Link to={'/gallery'} className='flex justify-center mt-[30px]'>
+                                <Button variant='light' color='primary' endContent={<NavigateNextIcon />}>Перейти</Button>
                             </Link>}
                         </>
                         :
@@ -131,4 +136,4 @@ const NewsHome = () => {
     )
 }
 
-export default NewsHome
+export default GalleryHome

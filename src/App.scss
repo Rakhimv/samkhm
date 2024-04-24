@@ -132,12 +132,12 @@ header {
     font-size: 25px;
   }
 
-  
-.bghome {
-  background-image: url('/public/homebg.png');
-  background-size: 200% 500px;
-  background-repeat: no-repeat;
-}
+
+  .bghome {
+    background-image: url('/public/homebg.png');
+    background-size: 200% 500px;
+    background-repeat: no-repeat;
+  }
 
 }
 
@@ -158,4 +158,58 @@ header {
     background-position: 40% 50%;
     background-repeat: no-repeat;
   }
+}
+
+
+.maxp {
+  height: 3.2em;
+  max-height: 3.2em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.6em;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 100px;
+  grid-gap: 10px;
+  /* Пространство между элементами сетки */
+}
+
+.gallery-item {
+  background-color: #141f78;
+
+  &:nth-child(1) {
+    height: 100%;
+    background-color: #141f78;
+    grid-area: 1/1/3/3
+  }
+}
+
+@media (max-width: 768px) {
+
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 27vw;
+    grid-gap: 10px;
+    /* Пространство между элементами сетки */
+  }
+
+  .gallery-item {
+    background-color: #141f78;
+    overflow: hidden;
+
+    &:nth-child(1) {
+      height: 100%;
+      background-color: #141f78;
+      grid-area: 1/1/3/-1
+    }
+
+
+  }
+
+
 }

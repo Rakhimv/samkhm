@@ -3,7 +3,28 @@ import Zoom from 'react-medium-image-zoom'
 import 'react-medium-image-zoom/dist/styles.css'
 
 const Managers = () => {
-
+  const directors = [
+    {
+      role: "Директор",
+      name: "Талибов Шухрат Насриддинович",
+      imageSrc: "/director.jpg"
+    },
+    {
+      role: "Заместитель директора по работе с молодежью",
+      name: "Саидов Зафар Сайфиддинович",
+      imageSrc: "/zam.jpg"
+    },
+    {
+      role: "Заместитель директора по учебной работе",
+      name: "Абдухаликова Дилафруз Мусиновна",
+      imageSrc: "/user.jpg"
+    },
+    {
+      role: "Заместитель директора по профессиональной подготовке",
+      name: "Хужаназаров Икром Уктамович",
+      imageSrc: "/user.jpg"
+    }
+  ];
 
   return (
     <div className="w-full flex justify-center mb-[50px]">
@@ -11,50 +32,22 @@ const Managers = () => {
         <div className="flex flex-col py-[50px] gap-[50px]">
 
 
-          <div className="flex gap-[30px] items-center">
-            <Zoom>
-              <Image loading="lazy" width={100} className="max-h-[100px]" src="/director.jpg" />
-            </Zoom>
-            <div>
-              <p className="text-[20px] opacity-80 font-medium">Директор</p>
-              <p className="text-[27px] font-medium">Талибов Шухрат Насриддинович</p>
+          {directors.map((director, index) => (
+            <div key={index} className="flex gap-[30px] items-center">
+              {director.imageSrc !== "/user.jpg" && (
+                <Zoom>
+                  <Image loading="lazy" className="max-h-[100px] w-[100px] noxs658:w-[70px] noxs658:min-w-[70px]" src={director.imageSrc} />
+                </Zoom>
+              )}
+              {director.imageSrc === "/user.jpg" && (
+                <Image loading="lazy" className="max-h-[100px] w-[100px] noxs658:w-[70px] noxs658:min-w-[70px]" src={director.imageSrc} />
+              )}
+              <div>
+                <p className="text-[20px] noxs658:text-[12px] opacity-80 font-medium">{director.role}</p>
+                <p className="text-[27px] noxs658:text-[16px] font-medium">{director.name}</p>
+              </div>
             </div>
-          </div>
-
-
-
-          <div className="flex gap-[30px] items-center">
-            <Zoom>
-              <Image loading="lazy" width={100} className="max-h-[100px]" src="/zam.jpg" />
-            </Zoom>
-            <div>
-              <p className="text-[20px] opacity-80 font-medium">Заместитель директора по работе с молодежью</p>
-              <p className="text-[27px] font-medium">Саидов Зафар Сайфиддинович</p>
-            </div>
-          </div>
-
-
-
-
-
-          <div className="flex gap-[30px] items-center">
-            <Image loading="lazy" width={100} className="max-h-[100px]" src="/user.jpg" />
-            <div>
-              <p className="text-[20px] opacity-80 font-medium">Заместитель директора по учебной работе</p>
-              <p className="text-[27px] font-medium">Абдухаликова Дилафруз Мусиновна</p>
-            </div>
-          </div>
-
-
-          <div className="flex gap-[30px] items-center">
-            <Image loading="lazy" width={100} className="max-h-[100px]" src="/user.jpg" />
-            <div>
-              <p className="text-[20px] opacity-80 font-medium">Заместитель директора по профессиональной подготовке</p>
-              <p className="text-[27px] font-medium">Хужаназаров Икром Уктамович</p>
-            </div>
-          </div>
-
-
+          ))}
 
 
         </div>
