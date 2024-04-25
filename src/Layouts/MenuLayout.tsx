@@ -6,7 +6,9 @@ const MenuLayout = () => {
     return (
         <div className="mt-[80px]">
             <Header />
-            <Outlet />
+            <div className="min-h-[50vh]">
+                <Outlet />
+            </div>
             <Footer />
         </div>
     )

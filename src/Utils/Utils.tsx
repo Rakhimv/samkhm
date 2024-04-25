@@ -36,7 +36,7 @@ export function formatTimeDetal(timestamp: any) {
         const day = date.getDate();
         const monthIndex = date.getMonth();
         const year = date.getFullYear();
-        
+
         // Получение часов и минут из объекта даты
         const hours = date.getHours().toString().padStart(2, '0');
         const minutes = date.getMinutes().toString().padStart(2, '0');
@@ -47,4 +47,9 @@ export function formatTimeDetal(timestamp: any) {
     } catch {
         return 'NaN';
     }
+}
+
+
+export function getLang() {
+    return localStorage.getItem('lang') && localStorage.getItem('lang') == 'ru'
 }

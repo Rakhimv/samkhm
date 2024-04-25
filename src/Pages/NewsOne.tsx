@@ -95,7 +95,7 @@ function NewsOne() {
                             </div>
                         }
 
-                        <p className='text-[18px] text-justify' style={{ whiteSpace: "pre-wrap" }}>{news.desc}</p>
+                        <p className='text-[18px] text-justify' style={{ whiteSpace: "pre-wrap" }} dangerouslySetInnerHTML={{ __html: news.desc.replace(/\*\*(.*?)\*\*/g, "<b>$1</b>") }}></p>
 
                     </div>
 

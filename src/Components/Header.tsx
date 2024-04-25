@@ -10,6 +10,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { useState } from "react";
 import AnchorTemporaryDrawer from "./Drawer";
 import SearchModal from "./SearchModal";
+import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@nextui-org/react";
+import { getLang } from "../Utils/Utils";
 
 const Header = () => {
     const path = useLocation()
@@ -17,7 +19,7 @@ const Header = () => {
     const is1000 = useMediaQuery(matches1000)
     const [menuOpen, setMenuOpen] = useState<boolean>(false)
     const [searchOpen, setSearchOpen] = useState<boolean>(false)
-
+    const langru = getLang()
     return (
         <header className="w-full h-[80px] fixed z-[49] top-0 header flex justify-center items-center">
 
@@ -25,9 +27,9 @@ const Header = () => {
 
             <div className="max-w-[1920px] w-full h-full px-[20px] py-[10px] flex justify-between items-center" >
                 <div className="h-full flex noxs1000:gap-[10px] items-center gap-[20px]" >
-                    <a href="/" className="h-full noxs1000:h-[50px]">
+                    {is1167 && <a href="/" className="h-full noxs1000:h-[50px]">
                         <img src="/sublogo.png" className="h-full" alt="" />
-                    </a>
+                    </a>}
 
                     {is1167 && <Link isBlock size="lg" className="flex gap-[10px]" href={`tel:${phone}`} color="foreground">
                         <LocalPhoneIcon />{phone}
@@ -61,7 +63,11 @@ const Header = () => {
                         startContent={
                             <SearchIcon />
                         }
-                    />}
+                    />
+
+
+
+                    }
 
 
                     {!is1167 &&
@@ -73,9 +79,48 @@ const Header = () => {
                             </a>
                             <Button size="lg" onClick={() => setSearchOpen(true)} isIconOnly>
                                 <SearchIcon />
-                            </Button></>
+                            </Button>
+
+
+                        </>
                     }
 
+
+
+                    <Dropdown placement="bottom-end" backdrop="transparent">
+                        <DropdownTrigger>
+                            <Button
+                                variant={!is1167 ? 'solid' : 'flat'}
+                                isIconOnly
+                                className="capitalize"
+                                size={!is1167 ? 'lg' : 'md'}
+                            >
+                                <img className="w-[30px] rounded-md" src={`/${langru ? 'ru' : 'uz'}.svg`} />
+                            </Button>
+                        </DropdownTrigger>
+                        <DropdownMenu
+                            aria-label="Action event example"
+                            onAction={(key) => {
+                                if (key == 'ru') {
+                                    localStorage.setItem('lang', 'ru')
+                                    window.location.reload()
+                                } else if (key == 'uz') {
+                                    localStorage.setItem('lang', 'uz')
+                                    window.location.reload()
+                                }
+                            }}
+
+                        >
+                            <DropdownItem key="ru">
+                                <div className="flex gap-[10px] items-center font-medium"> <img className="w-[30px] rounded-md" src={`/ru.svg`} />
+                                    Русский</div>
+                            </DropdownItem>
+                            <DropdownItem key="uz">
+                                <div className="flex gap-[10px] items-center font-medium"> <img className="w-[30px] rounded-md" src={`/uz.svg`} />
+                                    O'zbekcha</div>
+                            </DropdownItem>
+                        </DropdownMenu>
+                    </Dropdown>
 
                 </div>
             </div>

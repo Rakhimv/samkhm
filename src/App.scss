@@ -212,3 +212,27 @@ header {
 
 
 }
+
+
+
+.blurr {
+  /* From https://css.glass */
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.shad {
+  position: absolute;
+  left: 0px;
+  top: -5px;
+  right: 0;
+  bottom: 0;
+  height: 3000%;
+  padding: 20px;
+  width: 100%;
+  background-image: linear-gradient(#000 0%, rgba(246, 26, 26, 0) 30%);
+}
