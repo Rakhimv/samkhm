@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Button, Divider } from '@nextui-org/react';
+import { Button, Divider, Image } from '@nextui-org/react';
 import { Link } from 'react-router-dom';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import { useMediaQuery } from '@mui/material';
@@ -75,23 +75,9 @@ const GalleryHome = () => {
                             <div className='gallery-grid mt-[20px]'>
                                 {imgs.map((item: any, index: any) =>
 
-                                    <div className='gallery-item rounded-[10px] overflow-hidden'>
+                                    <div className='ddd rounded-[10px] overflow-hidden'>
                                         <Zoom >
-                                            <div
-                                                className='pb-[58%]'
-                                                key={index}
-                                                role="img"
-                                                style={{
-                                                    borderRadius: 10,
-                                                    backgroundColor: '#fff',
-                                                    backgroundImage: `url("${item}")`,
-                                                    backgroundPosition: '50%',
-                                                    backgroundRepeat: 'no-repeat',
-                                                    backgroundSize: 'cover',
-                                                    height: '100%',
-                                                    width: '100%',
-                                                }}
-                                            />
+                                           <Image className='object-cover' src={item} />
                                         </Zoom>
                                     </div>
 

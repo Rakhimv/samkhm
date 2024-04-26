@@ -9,7 +9,7 @@ const DirecHome = () => {
         <div className='w-full flex justify-center py-[50px] pt-[20px] mt-[50px] mb-[0px] noxs1000:p-[20px]' data-aos="fade-up">
             <div className='container max-w-[900px] '>
                 <div className='flex gap-[20px] noxs658:flex-col'>
-                    <Card className="col-span-12 sm:col-span-4 h-[300px] noxs658:h-[200px]">
+                    <Card className="col-span-12 dsd sm:col-span-4 h-[300px] noxs658:h-[200px]">
                         <CardHeader className="absolute z-10 top-1 flex-col !items-start">
                             <div className="shad w-full">
                                 <h4 className="text-white font-medium text-large">{langru ? 'Диагностика и ремонт автомобильных двигателей' : 'Avtomobil dvigatellarini tashxislash va taʼmirlash'}</h4>
@@ -22,7 +22,7 @@ const DirecHome = () => {
                             src="/image20.png"
                         />
                     </Card>
-                    <Card className="col-span-12 sm:col-span-4 h-[300px] noxs658:h-[200px]">
+                    <Card className="col-span-12 dsd sm:col-span-4 h-[300px] noxs658:h-[200px]">
                         <CardHeader className="absolute z-10 top-1 flex-col !items-start">
                             <div className="shad w-full">
                                 <h4 className="text-white font-medium text-large">{langru ? "Сварщик (электрогазосварочные работы)" : "Payvandlovchi (elektrgazpayvandlash ishlari)"}</h4>
@@ -35,7 +35,7 @@ const DirecHome = () => {
                             src="/image22.png"
                         />
                     </Card>
-                    <Card className="col-span-12 sm:col-span-4 h-[300px] noxs658:h-[200px]">
+                    <Card className="col-span-12 dsd sm:col-span-4 h-[300px] noxs658:h-[200px]">
                         <CardHeader className="absolute z-10 top-1 flex-col !items-start">
                             <div className="shad w-full">
                                 <h4 className="text-white font-medium text-large">{langru ? "Операторы компьютерной графики и дизайна" : "Kompyuter grafikasi va dizayn operatorlari"}</h4>
