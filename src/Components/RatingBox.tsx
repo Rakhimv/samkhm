@@ -118,11 +118,13 @@ function RatingBox() {
                             <Input
                                 variant='bordered'
                                 label="Ваше имя"
+                                maxLength={100}
                                 {...register('name', { required: true })}
                             />
                             <Textarea
                                 variant='bordered'
                                 placeholder="Отзыв"
+                                maxLength={400}
                                 {...register('text', { required: true })}
                             />
                             <Button isLoading={loadcom} color='primary' size='lg' type='submit' variant='solid'>Отправить</Button>
