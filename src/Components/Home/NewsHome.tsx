@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { GetNewsArray } from '../Admin/GetNewsArray';
 import { Button, Card, Chip, Divider,   Skeleton } from '@nextui-org/react';
 import { Link } from 'react-router-dom';
-import { formatTimestamp } from '../../Utils/Utils';
+import { formatTimestamp, getLang } from '../../Utils/Utils';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import { useMediaQuery } from '@mui/material';
 import { matches658 } from '../../Utils/Sizes';
@@ -10,7 +10,7 @@ import { matches658 } from '../../Utils/Sizes';
 const NewsHome = () => {
     const [newsArray, setNewsArray] = useState<any>(null);
     const ismb = useMediaQuery(matches658)
-
+    const langru = getLang()
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -32,10 +32,10 @@ const NewsHome = () => {
         <div className='w-full flex justify-center py-[50px] pt-[20px] mt-[50px] mb-[0px] noxs1000:p-[20px]' data-aos="fade-up">
             <div className='container max-w-[900px] '>
                 <div className={`py-[20px] flex justify-between noxs658:flex-col noxs1000:gap-[20px] items-center`}>
-                    <p className="text-2xl font-bold">Последние новости</p>
+                    <p className="text-2xl font-bold">{langru ? "Последние новости" : "So'nggi yangiliklar"}</p>
 
                     {ismb && < Link to={'/news'}>
-                        <Button variant='light' color='primary' endContent={<NavigateNextIcon />}>Смотреть все</Button>
+                        <Button variant='light' color='primary' endContent={<NavigateNextIcon />}>{langru ? "Смотреть все" : "Hammasini ochish"}</Button>
                     </Link>}
                 </div>
                 <Divider />
@@ -119,7 +119,7 @@ const NewsHome = () => {
 
 
                             {!ismb && < Link to={'/news'} className='flex justify-center mt-[30px]'>
-                                <Button variant='light' color='primary' endContent={<NavigateNextIcon />}>Смотреть все</Button>
+                                <Button variant='light' color='primary' endContent={<NavigateNextIcon />}>{langru ? "Смотреть все" : "Hammasini ochish"}</Button>
                             </Link>}
                         </>
                         :

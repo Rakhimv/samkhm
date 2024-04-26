@@ -1,4 +1,4 @@
-import { Card, Input, Modal, ModalContent } from '@nextui-org/react'
+import { Card, Image, Input, Modal, ModalContent } from '@nextui-org/react'
 import SearchIcon from '@mui/icons-material/Search';
 import { CircularProgress, Divider } from '@mui/material';
 import axios from 'axios';
@@ -7,7 +7,8 @@ import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
 import { MenuItems } from './Menu';
-
+import { professions } from '../Pages/Directions';
+import { getLang } from '../Utils/Utils';
 
 type Props = {
     open: boolean,
@@ -21,12 +22,12 @@ type T_SearchData = {
 }
 
 const SearchModal = (props: Props) => {
-
+    const langru = getLang()
     const [searchData, setSearchData] = useState<T_SearchData[]>([])
     const [searchData2, setSearchData2] = useState<T_SearchData[]>([])
     const [load, setload] = useState<boolean>(true)
     const path = useLocation()
-
+    const [vli, setVli] = useState<any>('')
     const fetchData = async () => {
         setSearchData([])
         setSearchData2([])
@@ -65,6 +66,18 @@ const SearchModal = (props: Props) => {
                     setSearchData2(searchData => [...searchData, data])
                 })
 
+
+                await professions.forEach((item: any) => {
+                    let data = {
+                        title: item.title,
+                        link: '/directions'
+                    }
+
+
+                    setSearchData(searchData => [...searchData, data])
+                    setSearchData2(searchData => [...searchData, data])
+                })
+
             }
 
 
@@ -92,7 +105,7 @@ const SearchModal = (props: Props) => {
 
     function handleSearch(e: any) {
         const vl = e.target.value;
-
+        setVli(vl)
         const results = searchData.filter(
             item =>
                 item.title.toLowerCase().includes(vl.toLowerCase()) ||
@@ -129,7 +142,12 @@ const SearchModal = (props: Props) => {
                     {searchData2.length == 0 ?
                         !load ?
                             <div className='w-full h-[300px] flex justify-center items-center'>
-                                Пусто
+                                {/* <ContentPasteSearchIcon color='primary' sx={{fontSize: 100}} /> */}
+                                <div className='flex flex-col gap-[20px] items-center'>
+                                    <Image src='/emp.gif' width={200} />
+                                    <p className='text-center opacity-70 font-bold max-w-[300px]'>{langru ? `Нет результатов по запросу "${vli}"` : `"${vli}" uchun hech qanday natija topilmadi`}</p>
+
+                                </div>
                             </div>
                             :
                             <div className='w-full h-[300px] flex justify-center items-center'>
@@ -139,7 +157,7 @@ const SearchModal = (props: Props) => {
 
                         searchData2.map((item: any) =>
                             <Link to={item.link}>
-                                <Card shadow='none' className='min-h-[50px] cursor-pointer hover:bg-primary hover:text-white p-[15px] border-primary border-[1px]'>
+                                <Card shadow='none' className='min-h-[50px] bg-[#6f7ef22e] cursor-pointer hover:bg-primary hover:text-white p-[15px] border-primary border-[1px]'>
                                     <p className='tsis w-full'>{item.title}</p>
                                 </Card>
                             </Link>

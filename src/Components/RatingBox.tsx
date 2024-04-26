@@ -7,7 +7,7 @@ import 'aos/dist/aos.css';
 import { useForm } from "react-hook-form"
 import axios from "axios"
 import { Rating } from '@mui/material';
-import { formatTimeDetal } from '../Utils/Utils';
+import { formatTimeDetal, getLang } from '../Utils/Utils';
 
 
 function RatingBox() {
@@ -15,7 +15,7 @@ function RatingBox() {
     const { register, handleSubmit } = useForm();
     const [ratings, setRatings] = useState<any>(null)
 
-
+    const langru = getLang()
     const [loadcom, setLoadcom] = useState<boolean>(false)
 
 
@@ -79,7 +79,7 @@ function RatingBox() {
             <div className='w-full flex justify-center py-[50px] pt-[20px] mt-[50px] mb-[0px] noxs1000:p-[20px]'>
                 <div className='container max-w-[900px] '>
                     <div className={`py-[20px] flex justify-between noxs658:flex-col noxs1000:gap-[20px] items-center`}>
-                        <p className="text-2xl font-bold">Отзывы</p>
+                        <p className="text-2xl font-bold">{langru ? 'Отзывы' : 'Izohlar'}</p>
                     </div>
 
 

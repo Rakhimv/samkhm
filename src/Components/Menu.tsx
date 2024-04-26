@@ -5,32 +5,59 @@ import NewspaperOutlinedIcon from '@mui/icons-material/NewspaperOutlined';
 import AssignmentIndOutlinedIcon from '@mui/icons-material/AssignmentIndOutlined';
 import BadgeOutlinedIcon from '@mui/icons-material/BadgeOutlined';
 import CollectionsOutlinedIcon from '@mui/icons-material/CollectionsOutlined';
+import { getLang } from "../Utils/Utils";
 
-export const MenuItems = [
+export const MenuItems = getLang() ? [
     {
         text: 'Главная страница',
         link: '/',
-        icon: <HomeIcon sx={{fontSize: 25}} />
+        icon: <HomeIcon sx={{ fontSize: 25 }} />
     },
     {
         text: 'Руководители',
         link: '/managers',
-        icon: <AssignmentIndOutlinedIcon sx={{fontSize: 25}} />
+        icon: <AssignmentIndOutlinedIcon sx={{ fontSize: 25 }} />
     },
     {
         text: 'Направления',
         link: '/directions',
-        icon: <BadgeOutlinedIcon sx={{fontSize: 25}} />
+        icon: <BadgeOutlinedIcon sx={{ fontSize: 25 }} />
     },
     {
         text: 'Студенческая галерея',
         link: '/gallery',
-        icon: <CollectionsOutlinedIcon sx={{fontSize: 25}} />
+        icon: <CollectionsOutlinedIcon sx={{ fontSize: 25 }} />
     },
     {
         text: 'Новости  ',
         link: '/news',
-        icon: <NewspaperOutlinedIcon sx={{fontSize: 25}} />
+        icon: <NewspaperOutlinedIcon sx={{ fontSize: 25 }} />
+    },
+] : [
+    {
+        text: 'Bosh sahifa',
+        link: '/',
+        icon: <HomeIcon sx={{ fontSize: 25 }} />
+    },
+    {
+        text: 'Rahbarlar',
+        link: '/managers',
+        icon: <AssignmentIndOutlinedIcon sx={{ fontSize: 25 }} />
+    },
+    {
+        text: "Yo'nalishlar",
+        link: '/directions',
+        icon: <BadgeOutlinedIcon sx={{ fontSize: 25 }} />
+    },
+    {
+        text: 'Talabalar galereyasi',
+        link: '/gallery',
+        icon: <CollectionsOutlinedIcon sx={{ fontSize: 25 }} />
+    },
+    {
+        text: 'Yangiliklar',
+        link: '/news',
+        icon: <NewspaperOutlinedIcon sx={{ fontSize: 25 }} />
     },
 ]
 
@@ -51,7 +78,7 @@ const MenuHD = ({ path }: Props) => {
     }, [path])
 
     return (
-        <>  
+        <>
             {MenuItems.map((item: any) =>
                 <div className="flex flex-col items-center h-[80px] justify-center">
 

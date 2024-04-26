@@ -2,21 +2,21 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link, Navigate, useParams } from 'react-router-dom';
 import { burl } from '../Utils/Global';
-import { BreadcrumbItem, Breadcrumbs, Card, Skeleton } from '@nextui-org/react';
+import { BreadcrumbItem, Breadcrumbs, Button, Card, Skeleton } from '@nextui-org/react';
 import Zoom from 'react-medium-image-zoom'
 import 'react-medium-image-zoom/dist/styles.css'
 import { CircularProgress, Divider } from '@mui/material';
 import { formatTimeDetal } from '../Utils/Utils';
 import { GetNewsArray } from '../Components/Admin/GetNewsArray';
-
-
-
+import ShareIcon from '@mui/icons-material/Share';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import DoneIcon from '@mui/icons-material/Done';
 function NewsOne() {
     let { id } = useParams();
     const [newsArray, setNewsArray] = useState<any>(null);
     const [news, setNews] = useState<any>(null)
     const [isLoad, setIsLoad] = useState<boolean>(true)
-
+    const [copy, setCopy] = useState<boolean>(false)
 
     const GetNews = async () => {
         try {
@@ -61,11 +61,46 @@ function NewsOne() {
 
                     <div className='flex flex-col w-full gap-[20px]'>
                         <div className='flex'>
-                            <div className="flex flex-col flex-wrap gap-4">
+                            <div className="flex flex-wrap gap-2">
                                 <Breadcrumbs variant={'bordered'}>
                                     <BreadcrumbItem><Link to={'/news'}>Новости</Link></BreadcrumbItem>
                                     <BreadcrumbItem className='dsis max-w-[200px]'>{news.title}</BreadcrumbItem>
                                 </Breadcrumbs>
+
+                                <div className='flex gap-2 min-h-[35px]'>
+                                    <Button className='h-full' variant='flat' radius='sm' isIconOnly
+                                        onClick={() => {
+
+                                            try {
+                                                navigator.clipboard.writeText('https://samkhm.netlify.app/news/' + id)
+                                                setCopy(true)
+                                                setTimeout(() => {
+                                                    setCopy(false)
+                                                }, 1000);
+                                            } catch {
+                                                console.log('err');
+
+                                            }
+                                        }}
+                                    >{!copy ? <ContentCopyIcon /> : <DoneIcon />}</Button>
+                                    <Button
+
+                                        onClick={() => {
+
+                                            try {
+                                                navigator.share({
+                                                    url: 'https://samkhm.netlify.app/news/' + id,
+                                                    title: news.title,
+                                                })
+                                            } catch {
+                                                console.log('err');
+
+                                            }
+                                        }}
+
+                                        className='h-full' variant='flat' radius='sm' isIconOnly><ShareIcon /></Button>
+
+                                </div>
                             </div>
                         </div>
                         <p className='font-bold opacity-60 mt-[20px] noxs658:mt-[20px]'>{formatTimeDetal(news?.ctime)}</p>

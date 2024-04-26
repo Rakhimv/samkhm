@@ -56,7 +56,7 @@ const Header = () => {
 
                     {is1167 && <Input
                         type="search"
-                        placeholder="Поиск по сайту..."
+                        placeholder={getLang() ? "Поиск по сайту..." : "Sayt bo'ylab qidirish..."}
                         className="w-[200px]"
                         onClick={() => setSearchOpen(true)}
                         readOnly
