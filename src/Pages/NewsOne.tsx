@@ -11,13 +11,15 @@ import { GetNewsArray } from '../Components/Admin/GetNewsArray';
 import ShareIcon from '@mui/icons-material/Share';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import DoneIcon from '@mui/icons-material/Done';
+import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
+import LocalPrintshopIcon from '@mui/icons-material/LocalPrintshop';
+
 function NewsOne() {
     let { id } = useParams();
     const [newsArray, setNewsArray] = useState<any>(null);
     const [news, setNews] = useState<any>(null)
     const [isLoad, setIsLoad] = useState<boolean>(true)
     const [copy, setCopy] = useState<boolean>(false)
-
     const GetNews = async () => {
         try {
             const req = await axios.get(burl + 'news/' + id + '.json')
@@ -61,14 +63,14 @@ function NewsOne() {
 
                     <div className='flex flex-col w-full gap-[20px]'>
                         <div className='flex'>
-                            <div className="flex flex-wrap gap-2">
+                            <div className="flex flex-col gap-2">
                                 <Breadcrumbs variant={'bordered'}>
                                     <BreadcrumbItem><Link to={'/news'}>Новости</Link></BreadcrumbItem>
                                     <BreadcrumbItem className='dsis max-w-[200px]'>{news.title}</BreadcrumbItem>
                                 </Breadcrumbs>
 
-                                <div className='flex gap-2 min-h-[35px]'>
-                                    <Button className='h-full' variant='flat' radius='sm' isIconOnly
+                                <div className='flex gap-2'>
+                                    <Button variant='faded' radius='sm' isIconOnly
                                         onClick={() => {
 
                                             try {
@@ -98,7 +100,30 @@ function NewsOne() {
                                             }
                                         }}
 
-                                        className='h-full' variant='flat' radius='sm' isIconOnly><ShareIcon /></Button>
+                                        variant='faded' radius='sm' isIconOnly><ShareIcon /></Button>
+
+                                    <Button
+                                        onClick={async () => {
+                                            await localStorage.setItem('news', JSON.stringify(news))
+                                            window.open('/pdf', '_blank');
+
+                                        }}
+                                        variant='faded'
+                                        radius='sm'
+                                        isIconOnly
+                                    >
+                                        <PictureAsPdfIcon />
+                                    </Button >
+                                    <Button
+
+                                        onClick={async () => {
+                                            await localStorage.setItem('news', JSON.stringify(news))
+                                            window.open('/print', '_blank');
+
+                                        }}
+
+                                        variant='faded' radius='sm' isIconOnly><LocalPrintshopIcon /></Button>
+
 
                                 </div>
                             </div>

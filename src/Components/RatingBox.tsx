@@ -92,10 +92,8 @@ function RatingBox() {
                                     if (localStorage.getItem('admin')) {
                                         let promt = confirm('Удалить комментарий?')
                                         if (promt) {
-                                            const r = await axios.delete('https://samkhm34-default-rtdb.asia-southeast1.firebasedatabase.app/rating/' + item.key + '.json')
-                                            if (r.data) {
-                                                getRatings()
-                                            }
+                                            await axios.delete('https://samkhm34-default-rtdb.asia-southeast1.firebasedatabase.app/rating/' + item.key + '.json')
+                                            getRatings()
                                         }
                                     }
                                 }} key={index} className='p-[20px] flex gap-[20px] '>

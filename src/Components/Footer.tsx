@@ -8,6 +8,7 @@ import { FaCode } from "react-icons/fa";
 import { MenuItems } from "./Menu";
 import { Link } from "react-router-dom";
 import { getLang } from "../Utils/Utils";
+import { FaWikipediaW } from "react-icons/fa";
 
 
 const Footer = () => {
@@ -36,6 +37,9 @@ const Footer = () => {
                                 <div className="flex gap-[20px] noxs658:justify-center noxs658:mb-[10px]">
                                     <a href="https://t.me/samarkand_shahar_khm">
                                         <Button isIconOnly className="bg-white"><FaTelegramPlane className="text-primary" size={25} /></Button>
+                                    </a>
+                                    <a href="https://uz.wikipedia.org/wiki/Samarqand_shahar_kasb-hunar_maktabi#">
+                                        <Button isIconOnly className="bg-white"><FaWikipediaW className="text-primary" size={25} /></Button>
                                     </a>
                                     <a href={`tel:${phone}`}>
                                         <Button isIconOnly className="bg-white"><FaPhoneAlt className="text-primary" size={25} /></Button>

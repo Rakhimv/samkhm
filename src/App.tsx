@@ -17,6 +17,8 @@ import Admin from './Pages/Admin'
 import NewsOne from './Pages/NewsOne'
 import News from './Pages/News'
 import { SnackbarProvider } from 'notistack';
+import Printed from './Pages/Printed'
+import Pf from './Pages/Pf'
 
 function App() {
   const path = useLocation()
@@ -51,9 +53,11 @@ function App() {
 
             <Route path="*" element={<p>404</p>} />
             <Route path="/404" element={<p>404</p>} />
+          
           </Route>
 
-
+          <Route path="/print" element={<Printed />} />
+          <Route path="/pdf" element={<Pf />} />
           <Route path='/admin' element={<Admin />} />
         </Routes >
       </SnackbarProvider>
