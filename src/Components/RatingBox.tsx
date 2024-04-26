@@ -87,13 +87,15 @@ function RatingBox() {
                     <div className='comms py-[50px] pt-[0px] gap-[20px] flex flex-col'>
                         {ratings &&
                             ratings.map((item: any, index: number) =>
-                                <Card onContextMenu={(e: any) => {
+                                <Card onContextMenu={async (e: any) => {
                                     e.preventDefault();
                                     if (localStorage.getItem('admin')) {
                                         let promt = confirm('Удалить комментарий?')
                                         if (promt) {
-                                            axios.delete('https://samkhm34-default-rtdb.asia-southeast1.firebasedatabase.app/rating/' + item.key + '.json')
-                                            getRatings()
+                                            const r = await axios.delete('https://samkhm34-default-rtdb.asia-southeast1.firebasedatabase.app/rating/' + item.key + '.json')
+                                            if (r.data) {
+                                                getRatings()
+                                            }
                                         }
                                     }
                                 }} key={index} className='p-[20px] flex gap-[20px] '>
