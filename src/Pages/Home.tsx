@@ -69,8 +69,8 @@ const Home = () => {
 
             <div className="w-full mb-[150px] mt-[50px] flex justify-center">
                 <div className='container max-w-[900px] flex flex-col gap-[20px] noxs1000:p-[20px]'>
-                    <div className={`py-[20px] flex justify-between noxs658:flex-col noxs1000:gap-[20px] items-center`}>
-                        <p className="text-2xl font-bold noxs658:text-center">{langru ? 'Часто задаваемые вопросы' : "Tez-tez so'raladigan savollar"}</p>
+                    <div className={`py-[20px] pb-[0px] flex justify-between noxs658:flex-col noxs1000:gap-[20px] items-center`}>
+                        <p className="text-2xl font-bold noxs658:text-center">FAQs</p>
                     </div>
                     <Accordions />
                 </div>

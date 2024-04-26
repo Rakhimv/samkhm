@@ -98,7 +98,7 @@ function RatingBox() {
                                     }
                                 }} key={index} className='p-[20px] flex gap-[20px] '>
                                     <div className='flex gap-[20px] items-start justify-between noxs658:flex-col-reverse'>
-                                        <User name={item.name} className='flex justify-start' description={formatTimeDetal(item.ctime)} />
+                                        <User name={<p className='max-w-[250px] tsis'>{item.name}</p>} className='flex justify-start' description={formatTimeDetal(item.ctime)} />
                                         <Rating size='medium' readOnly value={item.rating} />
                                     </div>
                                     <p>{item.text}</p>

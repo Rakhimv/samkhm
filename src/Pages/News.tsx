@@ -2,7 +2,7 @@ import { Button, Card, Skeleton } from "@nextui-org/react";
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom";
 import AddIcon from '@mui/icons-material/Add';
-import { formatTimeDetal } from "../Utils/Utils";
+import { formatTimeDetal, getLang } from "../Utils/Utils";
 import axios from "axios";
 import { burl } from "../Utils/Global";
 
@@ -14,7 +14,7 @@ const News = () => {
     const [isLoad] = useState<boolean>(true)
     const [visibleItems, setVisibleItems] = useState<any>(news);
     const nextShow = 10
-
+    const langru = getLang()
 
     const [itemsToShow, setItemsToShow] = useState<number>(nextShow * 2);
 
@@ -60,10 +60,10 @@ const News = () => {
         <div className="w-full flex justify-center">
             <div className="container p-[20px]">
                 <div className={`py-[20px] flex ${localStorage.getItem('admin') ? 'justify-between' : 'justify-center'} items-center`}>
-                    <p className="text-3xl font-bold">Новости</p>
+                    <p className="text-3xl font-bold">{langru ? 'Новости' : 'Yangiliklar'}</p>
                     {localStorage.getItem('admin') &&
                         <Link to={'/admin'}>
-                            <Button startContent={<AddIcon />}>Добавить</Button>
+                            <Button startContent={<AddIcon />}>{langru ? 'Добавить' : 'Yangi'}</Button>
                         </Link>
                     }
                 </div>
@@ -103,7 +103,7 @@ const News = () => {
                                         />
                                     }
                                     <div className="flex flex-col w-[calc(100%-200px)] noxs1000:w-full">
-                                        <p className="text-[14px] font-bold opacity-60 mb-[20px]">{formatTimeDetal(item.ctime)}</p>
+                                        <p className="text-[16px] font-bold opacity-60 mb-[10px]">{formatTimeDetal(item.ctime)}</p>
                                         <p className="text-[20px] tsis max-w-[100%]">{item.title}</p>
                                         <p className="text-[16px] opacity-60 tsis max-w-[90%]">{item.desc}</p>
                                     </div>
@@ -116,7 +116,7 @@ const News = () => {
                             {itemsToShow < news.length + nextShow && (
                                 <Button color="primary" variant="shadow" className="max-w-[200px]" onClick={() => {
                                     showMoreItems()
-                                }}>Показать ещё</Button>
+                                }}>{langru ? 'Показать ещё' : 'Yana ochish'}</Button>
                             )}
                         </div>
                     </div>

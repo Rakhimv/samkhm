@@ -1,9 +1,10 @@
 import { Image } from "@nextui-org/react"
 import Zoom from 'react-medium-image-zoom'
 import 'react-medium-image-zoom/dist/styles.css'
+import { getLang } from "../Utils/Utils";
 
 const Managers = () => {
-  const directors = [
+  const directors = getLang() ? [
     {
       role: "Директор",
       name: "Талибов Шухрат Насриддинович",
@@ -22,6 +23,27 @@ const Managers = () => {
     {
       role: "Заместитель директора по профессиональной подготовке",
       name: "Хужаназаров Икром Уктамович",
+      imageSrc: "/user.jpg"
+    }
+  ] : [
+    {
+      role: "direktor",
+      name: "Tolibov Shuhrat Nasriddinovich",
+      imageSrc: "/director.jpg"
+    },
+    {
+      role: "yoshlar bilan ishlash bo'yicha direktor o'rinbosari",
+      name: "Saidov Zafar Sayfiddinovich",
+      imageSrc: "/zam.jpg"
+    },
+    {
+      role: "o'quv ishlari bo'yicha direktor o'rinbosari",
+      name: "Abduhalikova Dilafruz Musinovna",
+      imageSrc: "/user.jpg"
+    },
+    {
+      role: "kasbiy tayyorgarlik bo'yicha direktor o'rinbosari",
+      name: "Xo'janazarov Ikrom Uktamovich",
       imageSrc: "/user.jpg"
     }
   ];
@@ -43,7 +65,7 @@ const Managers = () => {
                 <Image loading="lazy" className="max-h-[100px] w-[100px] noxs658:w-[70px] noxs658:min-w-[70px]" src={director.imageSrc} />
               )}
               <div>
-                <p className="text-[20px] noxs658:text-[12px] opacity-80 font-medium">{director.role}</p>
+                <p className="text-[20px] noxs658:text-[12px] opacity-80 font-medium capitalize">{director.role}</p>
                 <p className="text-[27px] noxs658:text-[16px] font-medium">{director.name}</p>
               </div>
             </div>

@@ -10,6 +10,7 @@ import  { MenuItems } from './Menu';
 import { useLocation, useNavigate } from 'react-router';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import { IconButton } from '@mui/material';
+import { getLang } from '../Utils/Utils';
 
 type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
@@ -70,7 +71,7 @@ export default function AnchorTemporaryDrawer({ state, setState }: Props) {
                             <AdminPanelSettingsIcon />
                         </IconButton>
                     </ListItemIcon>
-                    <ListItemText primary={'Админ панель'} />
+                    <ListItemText primary={getLang() ? 'Админ панель' : 'Admin Panel'} />
                 </ListItemButton>
             </ListItem>
         </Box>

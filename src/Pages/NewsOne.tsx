@@ -6,7 +6,7 @@ import { BreadcrumbItem, Breadcrumbs, Button, Card, Skeleton } from '@nextui-org
 import Zoom from 'react-medium-image-zoom'
 import 'react-medium-image-zoom/dist/styles.css'
 import { CircularProgress, Divider } from '@mui/material';
-import { formatTimeDetal } from '../Utils/Utils';
+import { formatTimeDetal, getLang } from '../Utils/Utils';
 import { GetNewsArray } from '../Components/Admin/GetNewsArray';
 import ShareIcon from '@mui/icons-material/Share';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
@@ -137,7 +137,7 @@ function NewsOne() {
 
                     <div className='min-w-[280px] w-[280px] noxs1000:w-full'>
                         <Card className='w-full flex flex-col p-[20px]'>
-                            <p className='text-center mb-[30px] font-bold'>Недавние публикации</p>
+                            <p className='text-center mb-[30px] font-bold'>{getLang() ? 'Недавние публикации' : "So'nggi yangiliklar"}</p>
 
                             {!newsArray ?
                                 <div className='flex flex-col mt-[20px] gap-[10px]'>

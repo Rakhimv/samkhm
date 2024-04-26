@@ -8,12 +8,13 @@ import Zoom from 'react-medium-image-zoom'
 import 'react-medium-image-zoom/dist/styles.css'
 import { Link } from "react-router-dom";
 import AddIcon from '@mui/icons-material/Add';
+import { getLang } from "../Utils/Utils";
 
 const Gallery = () => {
   const [imgs, setImgs] = useState<any>([])
   const [load, setLoad] = useState<boolean>(true)
   const filesRef = ref(storage, '/gallery');
-
+  const langru = getLang()
 
   async function getImgs() {
     setLoad(true)
@@ -47,10 +48,10 @@ const Gallery = () => {
     <div className="w-full flex justify-center min-h-[70vh] mb-[50px] noxs658:pt-[10px]">
       <div className="container  p-[20px] flex flex-col">
         <div className={`py-[20px] mb-[10px] flex ${localStorage.getItem('admin') ? 'justify-between noxs658:flex-col noxs658:gap-[20px] noxs658:justify-center' : 'justify-center'} items-center`}>
-          <p className="text-3xl font-bold noxs658:text-center">Студенческая галерея</p>
+          <p className="text-3xl font-bold noxs658:text-center">{langru ? 'Студенческая галерея' : 'Talabalar galereyasi'}</p>
           {localStorage.getItem('admin') &&
             <Link to={'/admin'}>
-              <Button startContent={<AddIcon />}>Добавить</Button>
+              <Button startContent={<AddIcon />}>{langru ? 'Добавить' : 'Yangi'}</Button>
             </Link>
           }
         </div>
