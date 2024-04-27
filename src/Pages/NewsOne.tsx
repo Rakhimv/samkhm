@@ -63,7 +63,7 @@ function NewsOne() {
 
                     <div className='flex flex-col w-full gap-[20px]'>
                         <div className='flex'>
-                            <div className="flex flex-col gap-2">
+                            <div className="flex flex-col gap-3">
                                 <Breadcrumbs variant={'bordered'}>
                                     <BreadcrumbItem><Link to={'/news'}>Новости</Link></BreadcrumbItem>
                                     <BreadcrumbItem className='dsis max-w-[200px]'>{news.title}</BreadcrumbItem>
@@ -74,7 +74,7 @@ function NewsOne() {
                                         onClick={() => {
 
                                             try {
-                                                navigator.clipboard.writeText('https://samkhm.netlify.app/news/' + id)
+                                                navigator.clipboard.writeText('https://sam-khm.netlify.app/news/' + id)
                                                 setCopy(true)
                                                 setTimeout(() => {
                                                     setCopy(false)
@@ -91,7 +91,7 @@ function NewsOne() {
 
                                             try {
                                                 navigator.share({
-                                                    url: 'https://samkhm.netlify.app/news/' + id,
+                                                    url: 'https://sam-khm.netlify.app/news/' + id,
                                                     title: news.title,
                                                 })
                                             } catch {
