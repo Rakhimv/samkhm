@@ -64,15 +64,20 @@ function NewsOne() {
                     <div className='flex flex-col w-full gap-[20px]'>
                         <div className='flex'>
                             <div className="flex flex-col gap-3">
+
+
+
                                 <Breadcrumbs variant={'bordered'}>
                                     <BreadcrumbItem><Link to={'/news'}>Новости</Link></BreadcrumbItem>
                                     <BreadcrumbItem className='dsis max-w-[200px]'>{news.title}</BreadcrumbItem>
                                 </Breadcrumbs>
 
+
+
+
                                 <div className='flex gap-2'>
                                     <Button variant='faded' radius='sm' isIconOnly
                                         onClick={() => {
-
                                             try {
                                                 navigator.clipboard.writeText('https://sam-khm.netlify.app/news/' + id)
                                                 setCopy(true)
@@ -86,9 +91,7 @@ function NewsOne() {
                                         }}
                                     >{!copy ? <ContentCopyIcon /> : <DoneIcon />}</Button>
                                     <Button
-
                                         onClick={() => {
-
                                             try {
                                                 navigator.share({
                                                     url: 'https://sam-khm.netlify.app/news/' + id,
@@ -96,11 +99,12 @@ function NewsOne() {
                                                 })
                                             } catch {
                                                 console.log('err');
-
                                             }
                                         }}
-
-                                        variant='faded' radius='sm' isIconOnly><ShareIcon /></Button>
+                                        variant='faded'
+                                        radius='sm'
+                                        isIconOnly
+                                    ><ShareIcon /></Button>
 
                                     <Button
                                         onClick={async () => {
@@ -126,6 +130,9 @@ function NewsOne() {
 
 
                                 </div>
+
+
+
                             </div>
                         </div>
                         <p className='font-bold opacity-60 mt-[20px] noxs658:mt-[20px]'>{formatTimeDetal(news?.ctime)}</p>
