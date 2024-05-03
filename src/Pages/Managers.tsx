@@ -18,12 +18,12 @@ const Managers = () => {
     {
       role: "Заместитель директора по учебной работе",
       name: "Абдухаликова Дилафруз Мусиновна",
-      imageSrc: "/user.jpg"
+      imageSrc: "/zam2.jpg"
     },
     {
       role: "Заместитель директора по профессиональной подготовке",
       name: "Хужаназаров Икром Уктамович",
-      imageSrc: "/user.jpg"
+      imageSrc: "/ikrom.jpeg"
     }
   ] : [
     {
@@ -39,12 +39,12 @@ const Managers = () => {
     {
       role: "o'quv ishlari bo'yicha direktor o'rinbosari",
       name: "Abduhalikova Dilafruz Musinovna",
-      imageSrc: "/user.jpg"
+      imageSrc: "/zam2.jpg"
     },
     {
       role: "kasbiy tayyorgarlik bo'yicha direktor o'rinbosari",
       name: "Xo'janazarov Ikrom Uktamovich",
-      imageSrc: "/user.jpg"
+      imageSrc: "/ikrom.jpeg"
     }
   ];
 
