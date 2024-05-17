@@ -7,7 +7,33 @@ import BadgeOutlinedIcon from '@mui/icons-material/BadgeOutlined';
 import CollectionsOutlinedIcon from '@mui/icons-material/CollectionsOutlined';
 import { getLang } from "../Utils/Utils";
 
-export const MenuItems = getLang() ? [
+export const MenuItems = getLang() === 'en' ? [
+    {
+        text: 'Home Page',
+        link: '/',
+        icon: <HomeIcon sx={{ fontSize: 25 }} />
+    },
+    {
+        text: 'Managers',
+        link: '/managers',
+        icon: <AssignmentIndOutlinedIcon sx={{ fontSize: 25 }} />
+    },
+    {
+        text: 'Directions',
+        link: '/directions',
+        icon: <BadgeOutlinedIcon sx={{ fontSize: 25 }} />
+    },
+    {
+        text: 'Student Gallery',
+        link: '/gallery',
+        icon: <CollectionsOutlinedIcon sx={{ fontSize: 25 }} />
+    },
+    {
+        text: 'News',
+        link: '/news',
+        icon: <NewspaperOutlinedIcon sx={{ fontSize: 25 }} />
+    },
+] : getLang() === 'ru' ? [
     {
         text: 'Главная страница',
         link: '/',
@@ -29,7 +55,7 @@ export const MenuItems = getLang() ? [
         icon: <CollectionsOutlinedIcon sx={{ fontSize: 25 }} />
     },
     {
-        text: 'Новости  ',
+        text: 'Новости',
         link: '/news',
         icon: <NewspaperOutlinedIcon sx={{ fontSize: 25 }} />
     },
@@ -59,7 +85,8 @@ export const MenuItems = getLang() ? [
         link: '/news',
         icon: <NewspaperOutlinedIcon sx={{ fontSize: 25 }} />
     },
-]
+];
+
 
 
 type Props = {

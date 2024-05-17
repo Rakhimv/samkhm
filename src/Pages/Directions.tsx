@@ -2,62 +2,61 @@ import { Divider } from "@mui/material";
 import { Image } from "@nextui-org/react";
 import { getLang } from "../Utils/Utils";
 
-
-export const professions = getLang() ? [
+export const professions = getLang() === 'en' ? [
   {
-    description: "Специалисты этого направления в совершенстве владеют методами диагностики и ремонта автомобильных двигателей, обеспечивая надежную и эффективную работу транспортных средств.",
+    description: "Specialists in this field are proficient in methods of diagnosing and repairing car engines, ensuring reliable and efficient operation of vehicles.",
     image: "image20.png",
-    title: "Диагностика и ремонт автомобильных двигателей"
+    title: "Car Engine Diagnostics and Repair"
   },
   {
-    description: "Эксперты данного направления заботятся о надежности и безопасности автомобилей, проводя техническое обслуживание и ремонт шасси, подвески и тормозных систем.",
+    description: "Experts in this field ensure the reliability and safety of vehicles by conducting technical maintenance and repair of chassis, suspension, and braking systems.",
     image: "image21.png",
-    title: "Техническое обслуживание и ремонт шасси автомобиля"
+    title: "Technical Maintenance and Repair of Car Chassis"
   },
   {
-    description: "Мастера этого направления воплощают в жизнь соединение металлических деталей с высокой точностью и качеством, обеспечивая прочность и долговечность конструкций.",
+    description: "Masters in this field accurately and qualitatively weld metal parts, ensuring the strength and durability of structures.",
     image: "image22.png",
-    title: "Сварщик (электрогазосварочные работы)"
+    title: "Welder (Electrogas Welding)"
   },
   {
-    description: "Эксперты создают уникальные модели одежды, проявляя творческий подход и мастерство в работе с различными тканями.",
+    description: "Experts create unique clothing models, demonstrating a creative approach and skill in working with various fabrics.",
     image: "image23.png",
-    title: "Портной (Модельер)"
+    title: "Tailor (Fashion Designer)"
   },
   {
-    description: "Профессионалы данного направления создают и модифицируют одежду с умением и вниманием к деталям, обеспечивая высокое качество и стиль в каждом шве.",
+    description: "Professionals in this field create and modify clothing with skill and attention to detail, ensuring high quality and style in every stitch.",
     image: "image24.png",
-    title: "Швея"
+    title: "Seamstress"
   },
   {
-    description: "Специалисты профессионально укладывают различные типы напольных покрытий, обеспечивая прочность, эстетичность и функциональность помещений.",
+    description: "Specialists professionally install various types of flooring, ensuring the strength, aesthetics, and functionality of premises.",
     image: "image25.png",
-    title: "Работник по укладке полов и покрытий"
+    title: "Flooring and Covering Installer"
   },
   {
-    description: "Эксперты строят и ремонтируют различные объекты, соблюдая высокие стандарты безопасности и эффективности, обеспечивая качество и надежность каждого проекта.",
+    description: "Experts build and repair various structures, adhering to high standards of safety and efficiency, ensuring quality and reliability in each project.",
     image: "image26.png",
-    title: "Строитель"
+    title: "Builder"
   },
   {
-    description: "Специалисты обеспечивают правильную работу систем водоснабжения и отопления, гарантируя комфорт и безопасность в жилых и коммерческих помещениях.",
+    description: "Specialists ensure the proper functioning of water supply and heating systems, guaranteeing comfort and safety in residential and commercial premises.",
     image: "image27.png",
-    title: "Мастер по эксплуатации и монтажу систем водоснабжения и отопления"
+    title: "Master of Operation and Installation of Water Supply and Heating Systems"
   },
   {
-    description: "Эксперты обеспечивают высокий уровень обслуживания клиентов в торговых точках, осуществляя операции с денежными средствами и контролируя ценности.",
+    description: "Experts provide a high level of customer service in retail outlets, carrying out cash operations and controlling valuables.",
     image: "image28.png",
-    title: "Продавец, кассир-контролер"
+    title: "Seller, Cashier-Controller"
   },
   {
-    description: "Специалисты обеспечивают контроль и надзор за операциями в банковской сфере, следя за соблюдением правил и процедур, обеспечивая безопасность и надежность финансовых операций.",
+    description: "Specialists ensure control and supervision over operations in the banking sector, ensuring compliance with rules and procedures, ensuring the safety and reliability of financial transactions.",
     image: "image29.png",
-    title: "Банковский контролер"
+    title: "Bank Controller"
   },
   {
-    description: "Эксперты в создании уникальных визуальных концепций и графических элементов, используя программное обеспечение для создания эстетических и инновационных проектов.",
+    description: "Experts in creating unique visual concepts and graphic elements, using software to create aesthetic and innovative projects.",
     image: "image30.png",
-    title: "Операторы компьютерной графики и дизайна"
+    title: "Computer Graphics and Design Operators"
   }
 ] : [
   {
@@ -86,12 +85,12 @@ export const professions = getLang() ? [
     title: "Tikuvchi"
   },
   {
-    description: "Bu yo'nalish mutaxassislar har xil turlarda pol va qoplamalarni samarali tarzda joylashadi, mehmonxonalarning, turar joylarining va xizmat ko'rsatish joylarining kuchli, estetik va funktsional qilishadi.",
+    description: "Bu yo'nalish mutaxassislar har xil turlarda pol va qoplamalarni samaralish uslubda joylashadi, mehmonxonalarning, turar joylarining va xizmat ko'rsatish joylarining kuchli, estetik va funktsional qilishadi.",
     image: "image25.png",
     title: "Duradgorlik va pol yotqizish ishlari ishchisi"
   },
   {
-    description: "Bu yo'nalish ekspertlar murakkabotlarni qurish va ta'mirlash bilan shug'ullanishadi, yuqori xavfsizlik va samarali standartlarni saqlab qolishadi, har bir loyihaning sifat va ishonchliligini ta'minlashadi.",
+    description: "Bu yo'nalish mutaxassislar qurilish va ta'mirlash bilan shug'ullanishadi, yuqori xavfsizlik va samarali standartlarni saqlab qolishadi, har bir loyihaning sifat va ishonchliligini ta'minlashadi.",
     image: "image26.png",
     title: "Qurilish ishlari ishchisi"
   },
@@ -115,19 +114,12 @@ export const professions = getLang() ? [
     image: "image30.png",
     title: "Kompyuter grafikasi va dizayn operatorlari"
   }
-]
-
-
+];
 
 const Directions = () => {
-
-
-
-
   return (
     <div className="w-full flex justify-center">
       <div className="container p-[20px] w-full flex flex-col">
-
 
         <div className="flex w-full items-center noxs1000:flex-col gap-[50px]">
           <div >
@@ -143,11 +135,9 @@ const Directions = () => {
           </div>
         </div>
 
-
         <div className="py-[50px]">
           <Divider />
         </div>
-
 
         <div className="flex flex-col gap-[20px]  ">
           {professions.map((prof: any, index: any) =>
@@ -166,8 +156,6 @@ const Directions = () => {
                   backgroundSize: 'cover',
                 }}
               />
-
-
               <div className="flex flex-col">
                 <p className="text-[25px] font-medium">{prof.title}</p>
                 <p>{prof.description}</p>
@@ -175,11 +163,10 @@ const Directions = () => {
             </div>
           )}
         </div>
-
-
       </div>
     </div>
   )
 }
 
-export default Directions
+export default Directions;
+

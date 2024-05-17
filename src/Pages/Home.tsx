@@ -24,29 +24,33 @@ const Home = () => {
 
             <div className="bghome h-[400px] overflow-hidden relative flex justify-center items-center ">
                 <div className="flex flex-col gap-[20px] items-center">
-                    {langru ?
+                    {langru === 'en' ?
                         <h1 data-aos="fade-up" className="text-white h11 text-center font2 leading-none">
-                            Профессиональная школа <br /> города Самарканд
+                            Professional School <br /> in Samarkand City
                         </h1>
                         :
-                        <h1 data-aos="fade-up" className="text-white h11 text-center font2 leading-none">
-                            Samarqand shahar <br /> Kasb-hunar maktabi
-                        </h1>
+                        langru === 'ru' ?
+                            <h1 data-aos="fade-up" className="text-white h11 text-center font2 leading-none">
+                                Профессиональная школа <br /> города Самарканд
+                            </h1>
+                            :
+                            <h1 data-aos="fade-up" className="text-white h11 text-center font2 leading-none">
+                                Samarqand shahar <br /> Kasb-hunar maktabi
+                            </h1>
                     }
 
-
-
-
-
-
                     <p data-aos="fade-up" data-aos-delay="500" className="text-white h12 text-center font-extralight max-w-[700px] noxs1000:leading-normal font2 leading-8">
-
-                        {langru ? 'Профессиональная школа, созданная указом президента Республики Узбекистан от 6 сентября 2019 года № ПФ – 5812, обучает 700+ учащихся по 11 направлениям, 81 инженерно-педагогический коллектив' : 'Oʻzbekiston Respublikasi Prezidentining 2019-yil 6-sentabrdagi PF-5812 sonli farmoni bilan tashkil etilgan kasb-hunar maktabida 11 ta yoʻnalish boʻyicha 652-nafar oʻquvchi taxsil olmoqda, oʻquvchilarga 81 nafar muhandis pedagoglar taʼlim berib kelmoqda'}
-                        '</p>
-
-
+                        {langru === 'en' ?
+                            'Professional school, established by the decree of the President of the Republic of Uzbekistan dated September 6, 2019, No. PF - 5812, educates 700+ students in 11 directions, 81 engineering and pedagogical staff.'
+                            :
+                            langru === 'ru' ?
+                                'Профессиональная школа, созданная указом Президента Республики Узбекистан от 6 сентября 2019 года № ПФ – 5812, обучает 700+ учащихся по 11 направлениям, 81 инженерно-педагогический коллектив.'
+                                :
+                                'Oʻzbekiston Respublikasi Prezidentining 2019-yil 6-sentabrdagi PF-5812 sonli farmoni bilan tashkil etilgan kasb-hunar maktabida 11 ta yoʻnalish boʻyicha 652-nafar oʻquvchi taxsil olmoqda, oʻquvchilarga 81 nafar muhandis pedagoglar taʼlim berib kelmoqda'}
+                    </p>
                 </div>
             </div>
+
 
 
 

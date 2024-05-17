@@ -51,5 +51,5 @@ export function formatTimeDetal(timestamp: any) {
 
 
 export function getLang() {
-    return localStorage.getItem('lang') && localStorage.getItem('lang') == 'ru'
+    return localStorage.getItem('lang') 
 }

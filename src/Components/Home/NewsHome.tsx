@@ -32,10 +32,10 @@ const NewsHome = () => {
         <div className='w-full flex justify-center py-[50px] pt-[20px] mt-[50px] mb-[0px] noxs1000:p-[20px]' data-aos="fade-up">
             <div className='container max-w-[900px] '>
                 <div className={`py-[20px] flex justify-between noxs658:flex-col noxs1000:gap-[20px] items-center`}>
-                    <p className="text-2xl font-bold">{langru ? "Последние новости" : "So'nggi yangiliklar"}</p>
+                    <p className="text-2xl font-bold">{langru === 'en' ? 'Last news' : langru === 'ru' ? "Последние новости" : "So'nggi yangiliklar"}</p>
 
                     {ismb && < Link to={'/news'}>
-                        <Button variant='light' color='primary' endContent={<NavigateNextIcon />}>{langru ? "Смотреть все" : "Hammasini ochish"}</Button>
+                        <Button variant='light' color='primary' endContent={<NavigateNextIcon />}>{langru === 'en' ? "See all" : langru === 'ru' ? "Смотреть все" : "Hammasini ko'rish"}</Button>
                     </Link>}
                 </div>
                 <Divider />
@@ -119,11 +119,11 @@ const NewsHome = () => {
 
 
                             {!ismb && < Link to={'/news'} className='flex justify-center mt-[30px]'>
-                                <Button variant='light' color='primary' endContent={<NavigateNextIcon />}>{langru ? "Смотреть все" : "Hammasini ochish"}</Button>
+                                <Button variant='light' color='primary' endContent={<NavigateNextIcon />}>{langru === 'en' ? "See all" : langru === 'ru' ? "Смотреть все" : "Hammasini ko'rish"}</Button>
                             </Link>}
                         </>
                         :
-                        <p>пусто</p>
+                        <p>{langru === 'en' ? 'Empty' : langru === 'ru' ? 'пусто' : 'boş'}</p>
                 }
 
             </div>

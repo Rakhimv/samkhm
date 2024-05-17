@@ -4,7 +4,28 @@ import 'react-medium-image-zoom/dist/styles.css'
 import { getLang } from "../Utils/Utils";
 
 const Managers = () => {
-  const directors = getLang() ? [
+  const directors = getLang() === 'en' ? [
+    {
+      role: "Director",
+      name: "Tolibov Shuhrat Nasriddinovich",
+      imageSrc: "/director.jpg"
+    },
+    {
+      role: "Deputy Director for Youth Affairs",
+      name: "Saidov Zafar Sayfiddinovich",
+      imageSrc: "/zam.jpg"
+    },
+    {
+      role: "Deputy Director for Academic Affairs",
+      name: "Abduhalikova Dilafruz Musinovna",
+      imageSrc: "/zam2.jpg"
+    },
+    {
+      role: "Deputy Director for Vocational Training",
+      name: "Xo'janazarov Ikrom Uktamovich",
+      imageSrc: "/ikrom.jpeg"
+    }
+  ] : getLang() === 'ru' ? [
     {
       role: "Директор",
       name: "Талибов Шухрат Насриддинович",
@@ -52,8 +73,6 @@ const Managers = () => {
     <div className="w-full flex justify-center mb-[50px]">
       <div className="container  max-w-[900px]  p-[20px] flex flex-col">
         <div className="flex flex-col py-[50px] gap-[50px]">
-
-
           {directors.map((director, index) => (
             <div key={index} className="flex gap-[30px] items-center">
               {director.imageSrc !== "/user.jpg" && (
@@ -70,12 +89,10 @@ const Managers = () => {
               </div>
             </div>
           ))}
-
-
         </div>
       </div>
     </div>
   )
 }
 
-export default Managers
+export default Managers;
