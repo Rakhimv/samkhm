@@ -76,8 +76,8 @@ const GalleryHome = () => {
                                 {imgs.map((item: any, index: any) =>
 
                                     <div key={index} className='ddd rounded-[10px] overflow-hidden'>
-                                        <Zoom >
-                                           <Image className='object-cover' src={item} />
+                                        <Zoom>
+                                           <Image className='object-cover h-full' src={item} />
                                         </Zoom>
                                     </div>
 

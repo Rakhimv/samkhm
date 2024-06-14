@@ -7,7 +7,7 @@ const Managers = () => {
   const directors = getLang() === 'en' ? [
     {
       role: "Director",
-      name: "Tolibov Shuhrat Nasriddinovich",
+      name: "Tolibov Shuhrat Nasrullayevich",
       imageSrc: "/director.jpg"
     },
     {
@@ -28,7 +28,7 @@ const Managers = () => {
   ] : getLang() === 'ru' ? [
     {
       role: "Директор",
-      name: "Талибов Шухрат Насриддинович",
+      name: "Талибов Шухрат Насруллаевич",
       imageSrc: "/director.jpg"
     },
     {
@@ -49,7 +49,7 @@ const Managers = () => {
   ] : [
     {
       role: "direktor",
-      name: "Tolibov Shuhrat Nasriddinovich",
+      name: "Tolibov Shuhrat Nasrullayevich",
       imageSrc: "/director.jpg"
     },
     {
